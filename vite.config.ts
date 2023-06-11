@@ -14,7 +14,7 @@ export default defineConfig({
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
       name: 'AudioPlayer',
-      fileName: (format) => `react-audio-player-js.${format}.js`
+      fileName: (format) => `react-audio-player-component.${format}.js`
     },
     rollupOptions: {
       external: ['react', 'react-dom'],

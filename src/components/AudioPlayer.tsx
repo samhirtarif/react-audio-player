@@ -11,28 +11,88 @@ import repeatOneSVG from "../icons/repeat-one.svg";
 import Timer from "./Timer";
 
 interface AudioPlayerProps {
+  /**
+   * Source for the audio file that needs to be played
+   */
   src: string;
+  /**
+   * Displays a minimal version of the audio player, with only the play/pause button, track bar and timestamp. Defaults to `false`
+   */
   minimal?: boolean;
+  /**
+   * Width of the audio player
+   */
   width: number;
+  /**
+   * Width of each individual bar in the visualization. Defaults to `2`
+   */
   barWidth?: number;
+  /**
+   * Gap between each individual bar in the visualization. Defaults to `1`
+   */
   gap?: number;
 
+  /**
+   * Represents whether the audio visualization (waveform) should be displayed. Defaults to `true`
+   */
   visualise?: boolean;
+  /**
+   * Height of the visualization / trackbar area. Defaults to `75`
+   */
   trackHeight?: number;
+  /**
+   * Background color for the audio player. Defaults to `#EFEFEF`
+   */
   backgroundColor?: string;
+  /**
+   * Bar color for the bars in the visualization. This only applies to bars that have not currently been played
+   */
   barColor?: string;
+  /**
+   * Bar color for the bars that have been played
+   */
   barPlayedColor?: string;
 
+  /**
+   * Represents whether the skip forward/backward options should be displayed. Defaults to `true`. Not applicable when `minimal` is set to `true`
+   */
   allowSkip?: boolean;
+  /**
+   * The number of seconds to skip forward/backward. Defaults to `5`
+   */
   skipDuration?: number;
+  /**
+   * Initial volume for the audio, minimum being `0`, maximum being `1`. Defaults to `0.75`
+   */
   initialVolume?: number;
+  /**
+   * Setting this to `true` will keep playing the audio in a loop. Defaults to `false`
+   */
   loop?: boolean;
+  /**
+   * Represents whether to show the loop options. Defaults to `true`
+   */
   showLoopOption?: boolean;
+  /**
+   * Represents whether the volume control should be shown. Defaults to `true`
+   */
   showVolumeControl?: boolean;
+  /**
+   * Color for the audio seek bar
+   */
   seekBarColor?: string;
+  /**
+   * Color for the volumn control
+   */
   volumeControlColor?: string;
-  hideTrack?: boolean;
-  hideTrackKnobWhenPlaying?: boolean;
+  /**
+   * Hides the seek bar if set to `true`, the audio will still be seekable. Defaults to `false`
+   */
+  hideSeekBar?: boolean;
+  /**
+   * Hides the seek knob when audio is playing if set to `true`. Defaults to `false`
+   */
+  hideSeekKnobWhenPlaying?: boolean;
 }
 
 const AudioPlayer: React.FC<AudioPlayerProps> = ({
@@ -54,8 +114,8 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
   showVolumeControl = true,
   seekBarColor,
   volumeControlColor,
-  hideTrack = false,
-  hideTrackKnobWhenPlaying = false,
+  hideSeekBar = false,
+  hideSeekKnobWhenPlaying = false,
 }) => {
   const [blob, setBlob] = useState<Blob>();
   const [audio] = useState<HTMLAudioElement>(() => new Audio());
@@ -200,7 +260,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
             height: trackHeight,
           }}
         >
-          {visualise && (
+          {visualise && blob && (
             <AudioVisualizer
               width={width * 0.7}
               height={trackHeight}
@@ -223,8 +283,8 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
             current={currentTime}
             setCurrent={seekTo}
             color={seekBarColor}
-            showTrack={!hideTrack}
-            showKnob={!(hideTrackKnobWhenPlaying && isPlaying)}
+            showTrack={!hideSeekBar}
+            showKnob={!(hideSeekKnobWhenPlaying && isPlaying)}
           />
         </div>
         <Timer
