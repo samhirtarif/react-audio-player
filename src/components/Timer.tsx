@@ -11,6 +11,7 @@ const Timer = ({ seconds }: Props): ReactElement => {
         color: "#000000",
         fontSize: 14,
       }}
+      data-testid={"timer"}
     >
       {seconds !== undefined
         ? `${Math.floor(seconds / 60)

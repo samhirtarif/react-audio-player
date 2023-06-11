@@ -3,7 +3,6 @@ import React, { type ReactElement, useRef, useState } from "react";
 interface Props {
   current: number;
   setCurrent: (c: number) => void;
-  onSettingCurrent?: () => void;
   total: number;
   showTrack?: boolean;
   showKnob?: boolean;
@@ -14,7 +13,6 @@ interface Props {
 const TrackBar = ({
   current,
   setCurrent,
-  onSettingCurrent,
   total,
   showTrack = true,
   showKnob = true,
@@ -64,7 +62,6 @@ const TrackBar = ({
 
     setPosition(event.nativeEvent);
     setIsHover(true);
-    onSettingCurrent?.();
   };
 
   const onMouseOrTouchMove = (event: MouseEvent | TouchEvent): void => {
@@ -109,6 +106,7 @@ const TrackBar = ({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       ref={progressBarRef}
+      data-testid={"trackbar"}
     >
       <div
         style={{

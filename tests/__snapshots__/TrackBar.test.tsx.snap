@@ -1,0 +1,55 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Test trackbar > Trackbar snapshot 1`] = `
+<div
+  data-testid="trackbar"
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onTouchStart={[Function]}
+  style={
+    {
+      "alignItems": "center",
+      "cursor": "pointer",
+      "display": "flex",
+      "gridColumn": 1,
+      "gridRow": 1,
+      "height": "15px",
+      "placeSelf": "center",
+      "width": "100%",
+    }
+  }
+  tabIndex={0}
+>
+  <div
+    style={
+      {
+        "alignItems": "center",
+        "backgroundColor": "rgba(140, 140, 140)",
+        "cursor": "pointer",
+        "display": "flex",
+        "height": 1,
+        "position": "relative",
+        "width": "100%",
+      }
+    }
+  >
+    <div
+      style={
+        {
+          "backgroundColor": "rgba(140, 140, 140)",
+          "borderRadius": "50%",
+          "cursor": "pointer",
+          "height": "10px",
+          "left": "0%",
+          "marginLeft": -5,
+          "opacity": 1,
+          "position": "absolute",
+          "transition": "opacity 0.75s ease-in-out",
+          "width": "10px",
+        }
+      }
+    />
+  </div>
+</div>
+`;
