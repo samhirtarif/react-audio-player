@@ -2,6 +2,7 @@ import React from "react";
 import { expect, test } from "vitest";
 import { render, screen } from "@testing-library/react";
 import renderer from "react-test-renderer"
+import "@testing-library/jest-dom"
 import Timer from "../src/components/Timer";
 
 
