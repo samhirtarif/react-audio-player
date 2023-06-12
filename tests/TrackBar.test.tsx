@@ -1,8 +1,7 @@
+import React from "react";
 import { expect, test } from "vitest";
 import renderer from "react-test-renderer"
-
 import TrackBar from "../src/components/TrackBar";
-
 
 describe("Test trackbar", () => {
   test("Trackbar snapshot", () => {

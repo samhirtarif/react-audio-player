@@ -1,8 +1,7 @@
+import React from "react";
 import { act, render, screen } from "@testing-library/react";
 import drag from "./utils/drag";
-
 import TrackBar from "../src/components/TrackBar";
-
 
 describe("Test trackbar", () => {
   it("Trackbar click", async () => {
