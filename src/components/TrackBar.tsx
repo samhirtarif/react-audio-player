@@ -8,6 +8,7 @@ interface Props {
   showKnob?: boolean;
   trackHeight?: number;
   color?: string;
+  "data-testid"?: string
 }
 
 const TrackBar = ({
@@ -18,6 +19,7 @@ const TrackBar = ({
   showKnob = true,
   trackHeight = 1,
   color = "rgba(140, 140, 140)",
+  ...rest
 }: Props): ReactElement => {
   const [isHover, setIsHover] = useState(false);
   const progressBarRef = useRef<HTMLDivElement>(null);
@@ -106,7 +108,7 @@ const TrackBar = ({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       ref={progressBarRef}
-      data-testid={"trackbar"}
+      data-testid={rest["data-testid"] ? `${rest["data-testid"]}-trackbar` : "trackbar"}
     >
       <div
         style={{

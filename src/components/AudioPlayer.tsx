@@ -285,6 +285,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
             color={seekBarColor}
             showTrack={!hideSeekBar}
             showKnob={!(hideSeekKnobWhenPlaying && isPlaying)}
+            data-testid="seek-trackbar"
           />
         </div>
         <Timer
@@ -348,6 +349,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                 total={1}
                 setCurrent={setAudioVolume}
                 color={volumeControlColor}
+                data-testid="volume"
               />
             </div>
           )}

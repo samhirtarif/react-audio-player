@@ -1,5 +1,86 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Test audio controls > AudioControls snapshot (no playing + no skip) 1`] = `
+<div
+  style={
+    {
+      "alignItems": "center",
+      "display": "flex",
+      "gap": 15,
+      "gridColumn": "2 / 2",
+    }
+  }
+>
+  <img
+    data-testid="play-pause"
+    onClick={[MockFunction spy]}
+    src="/src/icons/play.svg"
+    style={
+      {
+        "cursor": "pointer",
+        "height": "20px",
+        "width": "20px",
+      }
+    }
+    title="Play"
+  />
+</div>
+`;
+
+exports[`Test audio controls > AudioControls snapshot (playing + skip) 1`] = `
+<div
+  style={
+    {
+      "alignItems": "center",
+      "display": "flex",
+      "gap": 15,
+      "gridColumn": "2 / 2",
+    }
+  }
+>
+  <img
+    data-testid="skip-back"
+    onClick={[MockFunction spy]}
+    src="/src/icons/skip.svg"
+    style={
+      {
+        "cursor": "pointer",
+        "height": 16,
+        "transform": "rotate(180deg)",
+        "width": 16,
+      }
+    }
+    title="Skip backwards"
+  />
+  <img
+    data-testid="play-pause"
+    onClick={[MockFunction spy]}
+    src="/src/icons/pause.svg"
+    style={
+      {
+        "cursor": "pointer",
+        "height": "20px",
+        "width": "20px",
+      }
+    }
+    title="Pause"
+  />
+  <img
+    data-testid="skip-forward"
+    onClick={[MockFunction spy]}
+    src="/src/icons/skip.svg"
+    style={
+      {
+        "cursor": "pointer",
+        "height": 16,
+        "width": 16,
+      }
+    }
+    title="Skip forwards"
+  />
+</div>
+`;
+
 exports[`Test trackbar > AudioControls snapshot (no playing + no skip) 1`] = `
 <div
   style={

@@ -5,7 +5,7 @@ import userEvent from "@testing-library/user-event";
 import { render, act, screen } from "@testing-library/react";
 import AudioControls from "../src/components/AudioControls";
 
-describe("Test trackbar", () => {
+describe("Test audio controls", () => {
   const onPlayClick = vi.fn()
   const onPauseClick = vi.fn()
   const onSkipForwardClick = vi.fn()
