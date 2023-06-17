@@ -34,8 +34,8 @@ export default async function drag(
 
 
   const step = {
-    x: Math.abs(startCoords.x - endCoords.x) / steps,
-    y: (startCoords.y - endCoords.y) / steps,
+    x: (endCoords.x - startCoords.x) / steps,
+    y: (endCoords.y - startCoords.y) / steps,
   }
 
   const current = {
