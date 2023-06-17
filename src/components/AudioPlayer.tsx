@@ -39,6 +39,11 @@ interface AudioElementNativeProps {
    * Sets a value indicating what data should be preloaded, if any. Defaults to empty string
    */
   preload?: "" | "none" | "metadata" | "auto";
+  /**
+   * Sets the rate at which media is being played back. Defaults to `1.0`
+   */
+  playbackRate?: number;
+
 }
 
 interface AudioPlayerProps {
@@ -122,6 +127,7 @@ const AudioPlayer: React.FC<AudioElementNativeProps & AudioPlayerProps> = ({
   autoplay = false,
   crossOrigin = null,
   preload = "",
+  playbackRate = 1.0,
   // Audio player props
   minimal = false,
   width,
@@ -161,6 +167,7 @@ const AudioPlayer: React.FC<AudioElementNativeProps & AudioPlayerProps> = ({
         audio.autoplay = autoplay;
         audio.crossOrigin = crossOrigin;
         audio.preload = preload;
+        audio.playbackRate = playbackRate;
         setBlob(blob);
         return blob;
       })

@@ -56,6 +56,7 @@ const Player = () => {
 | **`autoplay`** | Sets a value that indicates whether to start playing the media automatically | `false` | Yes |
 | **`crossOrigin`** | The CORS setting for this media element. [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/crossOrigin) | `null` | Yes |
 | **`autoplay`** | Sets a value indicating what data should be preloaded, if any. Allowed values `""`, `"none"`, `"metadata"`, `"auto"` | `""` | Yes |
+| **`playbackRate`** | Sets the rate at which media is being played back | `1.0` | Yes |
 ---
 ## Audio player props props
 | Props  | Description | Default | Optional |
