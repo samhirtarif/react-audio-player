@@ -3,7 +3,7 @@ name: Browser tests
 on: push
 
 jobs:
-  vitest:
+  karma:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -12,4 +12,4 @@ jobs:
       - name: install dependencies
         run: npm ci
       - name: Run Tests
-        run: npm run test:browser
+        run: npm run test:browser -- --single-run
