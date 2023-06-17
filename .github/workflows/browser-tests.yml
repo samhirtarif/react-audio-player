@@ -1,0 +1,15 @@
+
+name: Browser tests
+on: push
+
+jobs:
+  karma:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+            node-version: "18.x"
+      - name: install dependencies
+        run: npm ci
+      - name: Run Tests
+        run: npm run test:browser -- --single-run

@@ -41,9 +41,9 @@ const AudioControls = ({
             width: 16,
             transform: "rotate(180deg)",
           }}
+          data-testid={"skip-back"}
         />
       )}
-      {/* skip fowards */}
       <img
         src={isPlaying ? pauseSVG : playSVG}
         onClick={isPlaying ? onPauseClick : onPlayClick}
@@ -53,6 +53,7 @@ const AudioControls = ({
           height: "20px",
           width: "20px",
         }}
+        data-testid={"play-pause"}
       />
       {/* skip forwards */}
       {allowSkip && (
@@ -65,6 +66,7 @@ const AudioControls = ({
             height: 16,
             width: 16,
           }}
+          data-testid={"skip-forward"}
         />
       )}
     </div>

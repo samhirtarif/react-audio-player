@@ -1,0 +1,29 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Test timer > Timer snapshot 1`] = `
+<div
+  data-testid="timer"
+  style={
+    {
+      "color": "#000000",
+      "fontSize": 14,
+    }
+  }
+>
+  --:--
+</div>
+`;
+
+exports[`Test timer > Timer snapshot with time passed 1`] = `
+<div
+  data-testid="timer"
+  style={
+    {
+      "color": "#000000",
+      "fontSize": 14,
+    }
+  }
+>
+  11:11
+</div>
+`;

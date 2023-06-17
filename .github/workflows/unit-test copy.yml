@@ -1,0 +1,15 @@
+
+name: Unit tests
+on: push
+
+jobs:
+  vitest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+            node-version: "18.x"
+      - name: install dependencies
+        run: npm ci
+      - name: Run Tests
+        run: npm run test
