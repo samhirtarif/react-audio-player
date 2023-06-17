@@ -8,7 +8,7 @@ interface Props {
   showKnob?: boolean;
   trackHeight?: number;
   color?: string;
-  "data-testid"?: string
+  "data-testid"?: string;
 }
 
 const TrackBar = ({
@@ -108,7 +108,9 @@ const TrackBar = ({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       ref={progressBarRef}
-      data-testid={rest["data-testid"] ? `${rest["data-testid"]}-trackbar` : "trackbar"}
+      data-testid={
+        rest["data-testid"] ? `${rest["data-testid"]}-trackbar` : "trackbar"
+      }
     >
       <div
         style={{

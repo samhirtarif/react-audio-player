@@ -33,7 +33,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "test": "vitest",
+    "test": "vitest test.tsx",
     "test:browser": "karma start",
     "coverage": "vitest run --coverage",
     "lint": "eslint src/**/*.ts{,x}",
