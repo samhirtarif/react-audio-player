@@ -34,13 +34,14 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "test": "vitest test.tsx",
+    "tf": "vitest",
     "test:browser": "karma start",
     "coverage": "vitest run --coverage",
     "lint": "eslint src/**/*.ts{,x}",
     "lint:fix": "npm run lint -- --fix"
   },
   "dependencies": {
-    "react-audio-visualize": "^1.0.0"
+    "react-audio-visualize": "^1.1.0"
   },
   "devDependencies": {
     "@testing-library/dom": "^9.3.0",

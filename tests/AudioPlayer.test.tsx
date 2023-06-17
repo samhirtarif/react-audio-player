@@ -1,8 +1,6 @@
 import React from "react";
 import { expect, test, vi } from "vitest";
 import renderer from "react-test-renderer"
-import userEvent from "@testing-library/user-event";
-import { render, act, screen } from "@testing-library/react";
 import { AudioPlayer } from "../src/components/AudioPlayer";
 
 describe("Test AudioPlayer", () => {
