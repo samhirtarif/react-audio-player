@@ -1,7 +1,7 @@
 {
   "name": "react-audio-player-component",
   "private": false,
-  "version": "1.0.1",
+  "version": "1.1.0",
   "license": "MIT",
   "author": "",
   "repository": {
@@ -9,13 +9,27 @@
     "url": "https://github.com/samhirtarif/react-audio-player.git"
   },
   "keywords": [
+    "react",
+    "reactjs",
+    "react-audio-player",
+    "react-audio-playback",
+    "react-voice-player",
+    "react-voice-playback",
+    "react-audio-player-component",
+    "react audio player",
+    "react audio playback",
+    "react voice player",
+    "react voice playback",
     "audio",
     "voice",
     "player",
     "audio player",
     "audio playback",
     "voice player",
-    "voice playback"
+    "voice playback",
+    "media",
+    "media-player",
+    "media player"
   ],
   "files": [
     "dist"
@@ -34,13 +48,14 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "test": "vitest test.tsx",
+    "tf": "vitest",
     "test:browser": "karma start",
     "coverage": "vitest run --coverage",
     "lint": "eslint src/**/*.ts{,x}",
     "lint:fix": "npm run lint -- --fix"
   },
   "dependencies": {
-    "react-audio-visualize": "^1.0.0"
+    "react-audio-visualize": "^1.1.0"
   },
   "devDependencies": {
     "@testing-library/dom": "^9.3.0",

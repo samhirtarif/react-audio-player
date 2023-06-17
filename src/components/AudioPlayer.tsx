@@ -10,11 +10,67 @@ import repeatSVG from "../icons/repeat.svg";
 import repeatOneSVG from "../icons/repeat-one.svg";
 import Timer from "./Timer";
 
-interface AudioPlayerProps {
+interface AudioElementNativeProps {
   /**
-   * Source for the audio file that needs to be played
+   * The address or URL of the a audio resource that is to be considered.
    */
   src: string;
+  /**
+   * Sets a flag to specify whether playback should restart after it completes. Defaults to `false`
+   */
+  loop?: boolean;
+  /**
+   * Initial volume level for the audio, minimum being `0`, maximum being `1`. Defaults to `0.75`
+   */
+  volume?: number;
+  /**
+   * Sets a flag that indicates whether the audio is muted. Defaults to `false`
+   */
+  muted?: boolean;
+  /**
+   * Sets a value that indicates whether to start playing the media automatically. Defaults to `false`
+   */
+  autoplay?: boolean;
+  /**
+   * The CORS setting for this media element. {@link https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/crossOrigin MDN Reference}. Defaults to `null`
+   */
+  crossOrigin?: string;
+  /**
+   * Sets a value indicating what data should be preloaded, if any. Defaults to empty string
+   */
+  preload?: "" | "none" | "metadata" | "auto";
+  /**
+   * Sets the rate at which media is being played back. Defaults to `1.0`
+   */
+  playbackRate?: number;
+}
+
+interface AudioElementEventProps {
+  onabort?: ((this: GlobalEventHandlers, ev: UIEvent) => any) | null;
+  oncanplay?: ((this: GlobalEventHandlers, ev: Event) => any) | null;
+  oncanplaythrough?: ((this: GlobalEventHandlers, ev: Event) => any) | null;
+  ondurationchange?: ((this: GlobalEventHandlers, ev: Event) => any) | null;
+  onemptied?: ((this: GlobalEventHandlers, ev: Event) => any) | null;
+  onended?: ((this: GlobalEventHandlers, ev: Event) => any) | null;
+  onerror?: OnErrorEventHandler | null;
+  onloadeddata?: ((this: GlobalEventHandlers, ev: Event) => any) | null;
+  onloadedmetadata?: ((this: GlobalEventHandlers, ev: Event) => any) | null;
+  onloadstart?: ((this: GlobalEventHandlers, ev: Event) => any) | null;
+  onpause?: ((this: GlobalEventHandlers, ev: Event) => any) | null;
+  onplay?: ((this: GlobalEventHandlers, ev: Event) => any) | null;
+  onplaying?: ((this: GlobalEventHandlers, ev: Event) => any) | null;
+  onprogress?: ((this: GlobalEventHandlers, ev: Event) => any) | null;
+  onratechange?: ((this: GlobalEventHandlers, ev: Event) => any) | null;
+  onseeked?: ((this: GlobalEventHandlers, ev: Event) => any) | null;
+  onseeking?: ((this: GlobalEventHandlers, ev: Event) => any) | null;
+  onstalled?: ((this: GlobalEventHandlers, ev: Event) => any) | null;
+  onsuspend?: ((this: GlobalEventHandlers, ev: Event) => any) | null;
+  ontimeupdate?: ((this: GlobalEventHandlers, ev: Event) => any) | null;
+  onvolumechange?: ((this: GlobalEventHandlers, ev: Event) => any) | null;
+  onwaiting?: ((this: GlobalEventHandlers, ev: Event) => any) | null;
+}
+
+interface AudioPlayerProps {
   /**
    * Displays a minimal version of the audio player, with only the play/pause button, track bar and timestamp. Defaults to `false`
    */
@@ -31,7 +87,6 @@ interface AudioPlayerProps {
    * Gap between each individual bar in the visualization. Defaults to `1`
    */
   gap?: number;
-
   /**
    * Represents whether the audio visualization (waveform) should be displayed. Defaults to `true`
    */
@@ -52,7 +107,6 @@ interface AudioPlayerProps {
    * Bar color for the bars that have been played
    */
   barPlayedColor?: string;
-
   /**
    * Represents whether the skip forward/backward options should be displayed. Defaults to `true`. Not applicable when `minimal` is set to `true`
    */
@@ -61,14 +115,6 @@ interface AudioPlayerProps {
    * The number of seconds to skip forward/backward. Defaults to `5`
    */
   skipDuration?: number;
-  /**
-   * Initial volume for the audio, minimum being `0`, maximum being `1`. Defaults to `0.75`
-   */
-  initialVolume?: number;
-  /**
-   * Setting this to `true` will keep playing the audio in a loop. Defaults to `false`
-   */
-  loop?: boolean;
   /**
    * Represents whether to show the loop options. Defaults to `true`
    */
@@ -95,8 +141,42 @@ interface AudioPlayerProps {
   hideSeekKnobWhenPlaying?: boolean;
 }
 
-const AudioPlayer: React.FC<AudioPlayerProps> = ({
+const AudioPlayer: React.FC<
+  AudioElementNativeProps & AudioElementEventProps & AudioPlayerProps
+> = ({
+  // native props
   src,
+  loop = false,
+  volume = 0.75,
+  muted = false,
+  autoplay = false,
+  crossOrigin = null,
+  preload = "",
+  playbackRate = 1.0,
+  // audio element events
+  onabort = null,
+  oncanplay = null,
+  oncanplaythrough = null,
+  ondurationchange = null,
+  onemptied = null,
+  onended = null,
+  onerror = null,
+  onloadeddata = null,
+  onloadedmetadata = null,
+  onloadstart = null,
+  onpause = null,
+  onplay = null,
+  onplaying = null,
+  onprogress = null,
+  onratechange = null,
+  onseeked = null,
+  onseeking = null,
+  onstalled = null,
+  onsuspend = null,
+  ontimeupdate = null,
+  onvolumechange = null,
+  onwaiting = null,
+  // Audio player props
   minimal = false,
   width,
   trackHeight = 75,
@@ -108,8 +188,6 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
   barPlayedColor,
   allowSkip = true,
   skipDuration = 5,
-  initialVolume = 0.75,
-  loop = false,
   showLoopOption = true,
   showVolumeControl = true,
   seekBarColor,
@@ -122,7 +200,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [duration, setDuration] = useState<number>(0);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
-  const [volume, setVolume] = useState<number>(initialVolume);
+  const [internalVolume, setVolume] = useState<number>(volume);
   const [isMuted, setIsMuted] = useState<boolean>(false);
   const [isLoop, setIsLoop] = useState<boolean>(loop);
 
@@ -131,8 +209,35 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
       .then(async (response): Promise<Blob> => {
         const blob = await response.blob();
         audio.src = URL.createObjectURL(blob);
-        audio.volume = initialVolume;
+        audio.volume = volume;
         audio.loop = loop;
+        audio.muted = muted;
+        audio.autoplay = autoplay;
+        audio.crossOrigin = crossOrigin;
+        audio.preload = preload;
+        audio.playbackRate = playbackRate;
+        audio.onabort = onabort;
+        audio.oncanplay = oncanplay;
+        audio.oncanplaythrough = oncanplaythrough;
+        audio.ondurationchange = ondurationchange;
+        audio.onemptied = onemptied;
+        audio.onended = onended;
+        audio.onerror = onerror;
+        audio.onloadeddata = onloadeddata;
+        audio.onloadedmetadata = onloadedmetadata;
+        audio.onloadstart = onloadstart;
+        audio.onpause = onpause;
+        audio.onplay = onplay;
+        audio.onplaying = onplaying;
+        audio.onprogress = onprogress;
+        audio.onratechange = onratechange;
+        audio.onseeked = onseeked;
+        audio.onseeking = onseeking;
+        audio.onstalled = onstalled;
+        audio.onsuspend = onsuspend;
+        audio.ontimeupdate = ontimeupdate;
+        audio.onvolumechange = onvolumechange;
+        audio.onwaiting = onwaiting;
         setBlob(blob);
         return blob;
       })
@@ -345,7 +450,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                 }}
               />
               <TrackBar
-                current={volume}
+                current={internalVolume}
                 total={1}
                 setCurrent={setAudioVolume}
                 color={volumeControlColor}

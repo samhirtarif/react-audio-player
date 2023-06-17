@@ -46,10 +46,28 @@ const Player = () => {
 }
 
 ```
-
+## Audio element native props
 | Props  | Description | Default | Optional |
 | :------------ |:--------------- |:--------------- | :--------------- |
-| **`src`**  | Source for the audio file that needs to be played | N/A | No |
+| **`src`**  | The address or URL of the a audio resource that is to be considered | N/A | No |
+| **`volume`** | Initial volume level for the audio, minimum being `0`, maximum being `1` | `0.75` | Yes |
+| **`loop`** | Sets a flag to specify whether playback should restart after it completes | `false` | Yes |
+| **`muted`** | Sets a flag that indicates whether the audio is muted | `false` | Yes |
+| **`autoplay`** | Sets a value that indicates whether to start playing the media automatically | `false` | Yes |
+| **`crossOrigin`** | The CORS setting for this media element. [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/crossOrigin) | `null` | Yes |
+| **`autoplay`** | Sets a value indicating what data should be preloaded, if any. Allowed values `""`, `"none"`, `"metadata"`, `"auto"` | `""` | Yes |
+| **`playbackRate`** | Sets the rate at which media is being played back | `1.0` | Yes |
+---
+<br>
+
+## Audio element events
+#### `AudioPlayer` supports all the events for `HTMLMediaElement` ([MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement#events)). All of the events listed in the MDN docs can be passed as a prop to the `AudioPlayer`
+---
+<br>
+
+## Audio player props
+| Props  | Description | Default | Optional |
+| :------------ |:--------------- |:--------------- | :--------------- |
 | **`minimal`** | Displays a minimal version of the audio player, with only the play/pause button, track bar and timestamp | `false` | Yes |
 | **`width`** | Width of the audio player | N/A | No |
 | **`barWidth`** | Width of each individual bar in the visualization | `2` | Yes |     
@@ -61,11 +79,10 @@ const Player = () => {
 | **`barPlayedColor`** |  Color for the bars that have been played | `"rgb(160, 198, 255)""` | Yes |
 | **`allowSkip`** |  Represents whether the skip forward/backward options should be displayed | `true` | Yes |
 | **`skipDuration`** |  The number of seconds to skip forward/backward | `5` | Yes |
-| **`initialVolume`** |  Initial volume for the audio, minimum being `0`, maximum being `1` | `0.75` | Yes |
-| **`loop`** |  Setting this to `true` will keep playing the audio in a loop | `false` | Yes |
 | **`showLoopOption`** |  Represents whether to show the loop options | `true` | Yes |
 | **`showVolumeControl`** |  Represents whether the volume control should be shown | `true` | Yes |
 | **`seekBarColor`** |  Color for the audio seek bar | `rgba(140, 140, 140)` | Yes |
 | **`volumeControlColor`** |  Color for the volumn control | `rgba(140, 140, 140)` | Yes |
 | **`hideSeekBar`** |  Hides the seek bar if set to `true`, the audio will still be seekable | `false` | Yes |
 | **`hideSeekKnobWhenPlaying`** |  Hides the seek knob when audio is playing if set to `true` | `false` | Yes |
+
