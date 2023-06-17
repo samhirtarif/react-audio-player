@@ -58,7 +58,14 @@ const Player = () => {
 | **`autoplay`** | Sets a value indicating what data should be preloaded, if any. Allowed values `""`, `"none"`, `"metadata"`, `"auto"` | `""` | Yes |
 | **`playbackRate`** | Sets the rate at which media is being played back | `1.0` | Yes |
 ---
-## Audio player props props
+<br>
+
+## Audio element events
+#### `AudioPlayer` supports all the events for `HTMLMediaElement` ([MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement#events)). All of the events listed in the MDN docs can be passed as a prop to the `AudioPlayer`
+---
+<br>
+
+## Audio player props
 | Props  | Description | Default | Optional |
 | :------------ |:--------------- |:--------------- | :--------------- |
 | **`minimal`** | Displays a minimal version of the audio player, with only the play/pause button, track bar and timestamp | `false` | Yes |
@@ -78,3 +85,4 @@ const Player = () => {
 | **`volumeControlColor`** |  Color for the volumn control | `rgba(140, 140, 140)` | Yes |
 | **`hideSeekBar`** |  Hides the seek bar if set to `true`, the audio will still be seekable | `false` | Yes |
 | **`hideSeekKnobWhenPlaying`** |  Hides the seek knob when audio is playing if set to `true` | `false` | Yes |
+

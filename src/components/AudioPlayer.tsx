@@ -43,11 +43,34 @@ interface AudioElementNativeProps {
    * Sets the rate at which media is being played back. Defaults to `1.0`
    */
   playbackRate?: number;
+}
 
+interface AudioElementEventProps {
+  onabort?: ((this: GlobalEventHandlers, ev: UIEvent) => any) | null;
+  oncanplay?: ((this: GlobalEventHandlers, ev: Event) => any) | null;
+  oncanplaythrough?: ((this: GlobalEventHandlers, ev: Event) => any) | null;
+  ondurationchange?: ((this: GlobalEventHandlers, ev: Event) => any) | null;
+  onemptied?: ((this: GlobalEventHandlers, ev: Event) => any) | null;
+  onended?: ((this: GlobalEventHandlers, ev: Event) => any) | null;
+  onerror?: OnErrorEventHandler | null;
+  onloadeddata?: ((this: GlobalEventHandlers, ev: Event) => any) | null;
+  onloadedmetadata?: ((this: GlobalEventHandlers, ev: Event) => any) | null;
+  onloadstart?: ((this: GlobalEventHandlers, ev: Event) => any) | null;
+  onpause?: ((this: GlobalEventHandlers, ev: Event) => any) | null;
+  onplay?: ((this: GlobalEventHandlers, ev: Event) => any) | null;
+  onplaying?: ((this: GlobalEventHandlers, ev: Event) => any) | null;
+  onprogress?: ((this: GlobalEventHandlers, ev: Event) => any) | null;
+  onratechange?: ((this: GlobalEventHandlers, ev: Event) => any) | null;
+  onseeked?: ((this: GlobalEventHandlers, ev: Event) => any) | null;
+  onseeking?: ((this: GlobalEventHandlers, ev: Event) => any) | null;
+  onstalled?: ((this: GlobalEventHandlers, ev: Event) => any) | null;
+  onsuspend?: ((this: GlobalEventHandlers, ev: Event) => any) | null;
+  ontimeupdate?: ((this: GlobalEventHandlers, ev: Event) => any) | null;
+  onvolumechange?: ((this: GlobalEventHandlers, ev: Event) => any) | null;
+  onwaiting?: ((this: GlobalEventHandlers, ev: Event) => any) | null;
 }
 
 interface AudioPlayerProps {
-  
   /**
    * Displays a minimal version of the audio player, with only the play/pause button, track bar and timestamp. Defaults to `false`
    */
@@ -118,7 +141,9 @@ interface AudioPlayerProps {
   hideSeekKnobWhenPlaying?: boolean;
 }
 
-const AudioPlayer: React.FC<AudioElementNativeProps & AudioPlayerProps> = ({
+const AudioPlayer: React.FC<
+  AudioElementNativeProps & AudioElementEventProps & AudioPlayerProps
+> = ({
   // native props
   src,
   loop = false,
@@ -128,6 +153,29 @@ const AudioPlayer: React.FC<AudioElementNativeProps & AudioPlayerProps> = ({
   crossOrigin = null,
   preload = "",
   playbackRate = 1.0,
+  // audio element events
+  onabort = null,
+  oncanplay = null,
+  oncanplaythrough = null,
+  ondurationchange = null,
+  onemptied = null,
+  onended = null,
+  onerror = null,
+  onloadeddata = null,
+  onloadedmetadata = null,
+  onloadstart = null,
+  onpause = null,
+  onplay = null,
+  onplaying = null,
+  onprogress = null,
+  onratechange = null,
+  onseeked = null,
+  onseeking = null,
+  onstalled = null,
+  onsuspend = null,
+  ontimeupdate = null,
+  onvolumechange = null,
+  onwaiting = null,
   // Audio player props
   minimal = false,
   width,
@@ -168,6 +216,28 @@ const AudioPlayer: React.FC<AudioElementNativeProps & AudioPlayerProps> = ({
         audio.crossOrigin = crossOrigin;
         audio.preload = preload;
         audio.playbackRate = playbackRate;
+        audio.onabort = onabort;
+        audio.oncanplay = oncanplay;
+        audio.oncanplaythrough = oncanplaythrough;
+        audio.ondurationchange = ondurationchange;
+        audio.onemptied = onemptied;
+        audio.onended = onended;
+        audio.onerror = onerror;
+        audio.onloadeddata = onloadeddata;
+        audio.onloadedmetadata = onloadedmetadata;
+        audio.onloadstart = onloadstart;
+        audio.onpause = onpause;
+        audio.onplay = onplay;
+        audio.onplaying = onplaying;
+        audio.onprogress = onprogress;
+        audio.onratechange = onratechange;
+        audio.onseeked = onseeked;
+        audio.onseeking = onseeking;
+        audio.onstalled = onstalled;
+        audio.onsuspend = onsuspend;
+        audio.ontimeupdate = ontimeupdate;
+        audio.onvolumechange = onvolumechange;
+        audio.onwaiting = onwaiting;
         setBlob(blob);
         return blob;
       })
