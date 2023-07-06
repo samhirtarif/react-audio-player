@@ -1,5 +1,5 @@
 # **react-audio-player-component**
-A audio player for React with a modern look and convenient usage
+A mobile-friendly audio player for React with a modern look and convenient usage.
 
 ## Installation
 ```sh

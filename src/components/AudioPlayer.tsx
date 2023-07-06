@@ -238,6 +238,8 @@ const AudioPlayer: React.FC<
         audio.ontimeupdate = ontimeupdate;
         audio.onvolumechange = onvolumechange;
         audio.onwaiting = onwaiting;
+
+        audio.addEventListener("ended", onAudioEnded);
         setBlob(blob);
         return blob;
       })
@@ -248,7 +250,17 @@ const AudioPlayer: React.FC<
           setDuration(buffer.duration);
         });
       });
+
+    return () => {
+      // clean up
+      audio.removeEventListener("ended", onAudioEnded);
+    };
   }, []);
+
+  const onAudioEnded = (): void => {
+    setIsPlaying(false);
+    setAudioTime(0);
+  };
 
   const playAudio = (): void => {
     if (!audio.src) return;
