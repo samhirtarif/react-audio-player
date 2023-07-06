@@ -5,7 +5,7 @@ import { AudioPlayer } from "./components/AudioPlayer";
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <AudioPlayer 
-      src="audios/test.mp3"
+      src="audios/audio.webm"
       minimal={false}
       width={350}
       trackHeight={75}
@@ -20,7 +20,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
       skipDuration={2}
       showLoopOption={true}
       showVolumeControl={true}
-
+      onended={() => console.log("ENDED")}
       // seekBarColor="purple"
       // volumeControlColor="blue"
       // hideSeekBar={true}
