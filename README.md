@@ -1,6 +1,20 @@
 # **react-audio-player-component**
 A mobile-friendly audio player for React with a modern look and convenient usage.
 
+[![NPM downloads][npm-download-img]][npm-download-url]
+[![Run ESlint][eslint-img]][eslint-url]
+[![Run Unit tests][test-img]][test-url] 
+[![Run Unit tests][browser-test-img]][browser-test-url] 
+
+[npm-download-img]: https://img.shields.io/npm/dm/react-audio-player-component.svg?style=round-square
+[npm-download-url]: https://www.npmjs.com/package/react-audio-player-component
+[eslint-img]: https://github.com/samhirtarif/react-audio-player/actions/workflows/lint.yml/badge.svg
+[eslint-url]: https://github.com/samhirtarif/react-audio-player/actions/workflows/lint.yml
+[test-img]: https://github.com/samhirtarif/react-audio-player/actions/workflows/unit-tests.yml/badge.svg
+[test-url]: https://github.com/samhirtarif/react-audio-player/actions/workflows/unit-tests.yml
+[browser-test-img]: https://github.com/samhirtarif/react-audio-player/actions/workflows/browser-tests.yml/badge.svg
+[browser-test-url]: https://github.com/samhirtarif/react-audio-player/actions/workflows/browser-tests.yml
+
 ## Installation
 ```sh
 npm install react-audio-player-component
